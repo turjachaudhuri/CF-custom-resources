@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudformationCustomResource", "CloudformationCustomResource\CloudformationCustomResource.csproj", "{DA81232E-74E4-4D8E-8EA5-40D2818EAE3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudformationCustomResource.Tests", "CloudformationCustomResource.Tests\CloudformationCustomResource.Tests.csproj", "{38A56AE9-5CA0-4C73-860D-3FB25D4F1645}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA81232E-74E4-4D8E-8EA5-40D2818EAE3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA81232E-74E4-4D8E-8EA5-40D2818EAE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA81232E-74E4-4D8E-8EA5-40D2818EAE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA81232E-74E4-4D8E-8EA5-40D2818EAE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38A56AE9-5CA0-4C73-860D-3FB25D4F1645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A56AE9-5CA0-4C73-860D-3FB25D4F1645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A56AE9-5CA0-4C73-860D-3FB25D4F1645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A56AE9-5CA0-4C73-860D-3FB25D4F1645}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01DFF7C3-E0C5-490E-82B6-6B17976D2AE7}
+	EndGlobalSection
+EndGlobal

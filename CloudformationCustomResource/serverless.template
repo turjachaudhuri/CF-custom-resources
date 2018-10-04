@@ -1,0 +1,149 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates one/more DynamoDB Table(s) and populates it with master data.",
+  "Parameters" : {
+    "DynamoDBTableName1" : {
+							"Type" : "String",
+							"Default" : "MasterTable1",
+							"Description" : "Enter the table name for MasterTable1. Default is MasterTable1."
+				  },
+	"DynamoDBTableName2" : {
+							"Type" : "String",
+							"Default" : "MasterTable2",
+							"Description" : "Enter the table name for MasterTable2. Default is MasterTable2."
+				  }
+  },
+  "Resources" : {     
+	 "DynamoDBMasterTable1" : {
+						  "Type" : "AWS::DynamoDB::Table",
+						  "Properties" : {
+							"AttributeDefinitions" : [
+							  {
+								"AttributeName" : "PrimaryKeyID1",
+								"AttributeType" : "S"   
+							  }
+							],
+							"KeySchema" : [
+							  {
+								"AttributeName" : "PrimaryKeyID1",
+								"KeyType" : "HASH"
+							  }
+							],
+							"ProvisionedThroughput" : {
+							  "ReadCapacityUnits" : "1",
+							  "WriteCapacityUnits" : "1"
+							},
+							"TableName" :  {
+								"Fn::Sub": "${DynamoDBTableName1}"
+							   }
+						  }
+						},
+     "DynamoDBMasterTable2" : {
+						  "Type" : "AWS::DynamoDB::Table",
+						  "Properties" : {
+							"AttributeDefinitions" : [
+							  {
+								"AttributeName" : "PrimaryKeyID2",
+								"AttributeType" : "S"   
+							  }
+							],
+							"KeySchema" : [
+							  {
+								"AttributeName" : "PrimaryKeyID2",
+								"KeyType" : "HASH"
+							  }
+							],
+							"ProvisionedThroughput" : {
+							  "ReadCapacityUnits" : "1",
+							  "WriteCapacityUnits" : "1"
+							},
+							"TableName" :  {
+								"Fn::Sub": "${DynamoDBTableName2}"
+							   }
+						  }
+						},
+	"CustomResourceLambdaExecutionRole": {
+	                "DependsOn": ["DynamoDBMasterTable1" , "DynamoDBMasterTable2"],
+					"Type": "AWS::IAM::Role",
+					"Properties": {
+						"AssumeRolePolicyDocument": {
+							"Version": "2012-10-17",
+							"Statement": [{
+								"Effect": "Allow",
+								"Principal": {
+									"Service": ["lambda.amazonaws.com" , "cloudformation.amazonaws.com"]
+								},
+								"Action": ["sts:AssumeRole"]
+							}]
+						},
+						"Path": "/"
+					}
+				},
+	"CustomResourceLambdaExecutionPolicy": {
+					"DependsOn": ["CustomResourceLambdaExecutionRole"],					
+					"Type": "AWS::IAM::Policy",
+					"Properties": {
+						"PolicyName": "CustomResourceLambdaExecutionPolicyDocument",
+						"Roles": [{
+							"Ref": "CustomResourceLambdaExecutionRole"
+						}],
+						"PolicyDocument": {
+							"Version": "2012-10-17",
+							"Statement": [{
+								"Sid": "DynamoDBAccess",
+								"Action": "dynamodb:*",
+								"Effect": "Allow",
+								"Resource": "*"
+							},
+							{
+							    "Sid": "CloudwatchLogGroupAccess",
+								"Action": [
+											"logs:CreateLogGroup",
+											"logs:CreateLogStream",
+											"logs:PutLogEvents"
+										  ],
+								"Effect": "Allow",
+								"Resource": "*"
+							}
+							]
+						}
+					}
+				},	  
+    "CustomResourceFunction" : {
+      "Type" : "AWS::Serverless::Function",
+	  "DependsOn": ["DynamoDBMasterTable1","DynamoDBMasterTable2","CustomResourceLambdaExecutionPolicy"],					
+      "Properties": {
+        "Handler": "CloudformationCustomResource::CloudformationCustomResource.StartupProgram::LoadMasterData",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+        "Description": "This function will be invoked when the custom resource is created , and this will populate a dynamoDB table based on some values in a S3 table ",
+        "MemorySize": 1024,
+        "Timeout": 300,
+        "Role": {
+            "Fn::GetAtt": ["CustomResourceLambdaExecutionRole", "Arn"]
+        },
+		"Tags":{
+				"Project":"Dot net core cloudformation custom resource",
+				"CreatedBy":"turja chaudhuri"
+			   }        
+      }
+    },
+    "PopulateMasterData": {
+      "Type": "Custom::PopulateMasterData",
+      "Properties": {
+        "ServiceToken": {
+            "Fn::GetAtt": ["CustomResourceFunction", "Arn"]
+        },
+		"TableName" : {
+					   "Fn::Sub": "${DynamoDBTableName1}"
+				      }
+      }
+    }
+ },
+"Outputs" : {
+      "CustomResourceAttribute1" : {
+         "Value" : { "Fn::GetAtt" : ["PopulateMasterData", "EmployeeID"] }
+      }
+   }
+}

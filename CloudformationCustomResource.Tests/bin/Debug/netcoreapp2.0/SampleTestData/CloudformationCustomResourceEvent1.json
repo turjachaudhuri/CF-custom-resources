@@ -1,0 +1,11 @@
+{
+	"ResourceProperties": {
+		"TableName": "MasterTable1"
+	},
+	"StackId": "arn:aws:cloudformation:us-east-1:551250655555:stack/custom-resource-stack/2bcc8550-c7b2-11e8-af53-500abe228429",
+	"ResponseURL": "https://cloudformation-custom-resource-response-useast1.s3.amazonaws.com/arn%3Aaws%3Acloudformation%3Aus-east-1%3A551250655555%3Astack/custom-resource-stack/2bcc8550-c7b2-11e8-af53-500abe228429%7CPopulateMasterData%7C9442d4eb-5a34-45a8-a13c-a3d104350dce?AWSAccessKeyId=AKIAJLB4SIS7I2USOKMA&Expires=1538650141&Signature=712Z54OJ73zm0zAPWKSaJvml1W8%3D",
+	"RequestType": "Create",
+	"ResourceType": "Custom::PopulateMasterData",
+	"RequestId": "9442d4eb-5a34-45a8-a13c-a3d104350dce",
+	"LogicalResourceId": "PopulateMasterData"
+}
