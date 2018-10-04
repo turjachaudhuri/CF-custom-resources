@@ -7413,11 +7413,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource.Tests\\CloudformationCustomResource.Tests.csproj",
+      "projectUniqueName": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CF-custom-resources\\CloudformationCustomResource.Tests\\CloudformationCustomResource.Tests.csproj",
       "projectName": "CloudformationCustomResource.Tests",
-      "projectPath": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource.Tests\\CloudformationCustomResource.Tests.csproj",
+      "projectPath": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CF-custom-resources\\CloudformationCustomResource.Tests\\CloudformationCustomResource.Tests.csproj",
       "packagesPath": "C:\\Users\\turjac591\\.nuget\\packages\\",
-      "outputPath": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource.Tests\\obj\\",
+      "outputPath": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CF-custom-resources\\CloudformationCustomResource.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7436,8 +7436,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource.csproj": {
-              "projectPath": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource\\CloudformationCustomResource.csproj"
+            "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CF-custom-resources\\CloudformationCustomResource\\CloudformationCustomResource.csproj": {
+              "projectPath": "C:\\Office\\Projects\\2018\\AWS\\AWS SAM\\CloudformationCustomResource\\CloudformationCustomResource\\CF-custom-resources\\CloudformationCustomResource\\CloudformationCustomResource.csproj"
             }
           }
         }

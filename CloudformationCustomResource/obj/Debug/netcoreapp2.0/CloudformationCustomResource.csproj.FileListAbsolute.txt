@@ -9,3 +9,14 @@ C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationC
 C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CloudformationCustomResource\bin\Debug\netcoreapp2.0\CloudformationCustomResource.pdb
 C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.dll
 C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.pdb
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\bin\Debug\netcoreapp2.0\CloudformationCustomResource.deps.json
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\bin\Debug\netcoreapp2.0\CloudformationCustomResource.runtimeconfig.json
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\bin\Debug\netcoreapp2.0\CloudformationCustomResource.runtimeconfig.dev.json
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\bin\Debug\netcoreapp2.0\CloudformationCustomResource.dll
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\bin\Debug\netcoreapp2.0\CloudformationCustomResource.pdb
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.csprojAssemblyReference.cache
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.csproj.CoreCompileInputs.cache
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.AssemblyInfoInputs.cache
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.AssemblyInfo.cs
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.dll
+C:\Office\Projects\2018\AWS\AWS SAM\CloudformationCustomResource\CloudformationCustomResource\CF-custom-resources\CloudformationCustomResource\obj\Debug\netcoreapp2.0\CloudformationCustomResource.pdb

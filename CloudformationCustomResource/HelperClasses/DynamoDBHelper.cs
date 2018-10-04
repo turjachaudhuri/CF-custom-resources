@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Amazon.Lambda.Core;
-using Amazon;
 using CloudformationCustomResource.Model.DynamoDB;
-using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
 
 namespace CloudformationCustomResource.HelperClasses
@@ -49,16 +43,16 @@ namespace CloudformationCustomResource.HelperClasses
                 context.Logger.LogLine("DynamoDBHelper  => " + ex.StackTrace);
             }
         }
-        public void putItemTable1(string PrimaryKeyID1, DynamoDBMasterItem1 masterItem, string TableName)
+        public void putItemTable1(DynamoDBMasterItem1 masterItem, string TableName)
         {
             try
             {
                 context.Logger.LogLine("DynamoDBHelper::putItemTable1()=> TableName = " + TableName);
-                context.Logger.LogLine("DynamoDBHelper::putItemTable1()=> PKID =  " + PrimaryKeyID1);
+                context.Logger.LogLine("DynamoDBHelper::putItemTable1()=> PKID =  " + masterItem.EmployeeID);
                 Table table = Table.LoadTable(client, TableName);
 
                 var clientItem = new Document();
-                clientItem["PrimaryKeyID1"] = PrimaryKeyID1;
+                clientItem["PrimaryKeyID1"] = masterItem.EmployeeID;
                 clientItem["Name"] = masterItem.Name;
                 clientItem["Employee"] = masterItem.Employee;
                 clientItem["Age"] = masterItem.Age;

@@ -38,6 +38,7 @@ namespace CloudformationCustomResource
         public CloudFormationResponse LoadMasterData(LoadMasterDataCustomCloudformationEvent request, ILambdaContext context)
         {
             DynamoDBMasterItem1 item1 = new DynamoDBMasterItem1(
+                                                Convert.ToString(Guid.NewGuid()),
                                                 "Rohit Srivastava",
                                                 "Senior Consultant",
                                                 "29",
@@ -51,10 +52,9 @@ namespace CloudformationCustomResource
 
                 if (string.Equals(request.RequestType , Constants.CloudFormationCreateRequestType))
                 {                     
-                    string EmployeeID = Convert.ToString(Guid.NewGuid());
-                    context.Logger.LogLine($"Employee ID generated = {EmployeeID}");
+                    
 
-                    dynamoDBHelper.putItemTable1(EmployeeID, item1, request.ResourceProperties.TableName);
+                    dynamoDBHelper.putItemTable1(item1, request.ResourceProperties.TableName);
 
                     //Success - data inserted properly in the dynamoDB
                     CloudFormationResponse objResponse =
