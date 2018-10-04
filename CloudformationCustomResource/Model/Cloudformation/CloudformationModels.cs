@@ -20,6 +20,9 @@ namespace CloudformationCustomResource.Model.Cloudformation
         public string ResourceType { get; set; }
         public string RequestId { get; set; }
         public string LogicalResourceId { get; set; }
+        public string PhysicalResourceId { get; set; }  //valid for delete and update operations
+        public object ResourceProperties { get; set; }  //valid for delete and update operations
+        public object OldResourceProperties { get; set; } //valid for update operations
     }
 
     public class CloudFormationResponse

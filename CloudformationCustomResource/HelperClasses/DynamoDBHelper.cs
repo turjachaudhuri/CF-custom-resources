@@ -49,17 +49,26 @@ namespace CloudformationCustomResource.HelperClasses
             {
                 context.Logger.LogLine("DynamoDBHelper::putItemTable1()=> TableName = " + TableName);
                 context.Logger.LogLine("DynamoDBHelper::putItemTable1()=> PKID =  " + masterItem.EmployeeID);
-                Table table = Table.LoadTable(client, TableName);
 
-                var clientItem = new Document();
-                clientItem["PrimaryKeyID1"] = masterItem.EmployeeID;
-                clientItem["Name"] = masterItem.Name;
-                clientItem["Employee"] = masterItem.Employee;
-                clientItem["Age"] = masterItem.Age;
-                clientItem["Department"] = masterItem.Department;
+                if (getItem(masterItem.UniqueID,TableName)== null) // this item does not exist
+                {                    
+                    Table table = Table.LoadTable(client, TableName);
 
-                table.PutItemAsync(clientItem).GetAwaiter().GetResult();
-                context.Logger.LogLine("DynamoDBHelper::PutItem() -- PutOperation succeeded");
+                    var clientItem = new Document();
+                    clientItem["UniqueID"] = masterItem.UniqueID;
+                    clientItem["EmployeeID"] = masterItem.EmployeeID;
+                    clientItem["Name"] = masterItem.Name;
+                    clientItem["Employee"] = masterItem.Designation;
+                    clientItem["Age"] = masterItem.Age;
+                    clientItem["Department"] = masterItem.Department;
+
+                    table.PutItemAsync(clientItem).GetAwaiter().GetResult();
+                    context.Logger.LogLine("DynamoDBHelper::PutItem() -- PutOperation succeeded");
+                }
+                else
+                {
+                    context.Logger.LogLine("DynamoDBHelper::putItemTable1()=> UniqueID = " + TableName);
+                }
             }
             catch (Exception ex)
             {
@@ -77,17 +86,15 @@ namespace CloudformationCustomResource.HelperClasses
             {
                 Table table = Table.LoadTable(client, TableName);
 
-
                 // Configuration object that specifies optional parameters.
                 GetItemOperationConfig config = new GetItemOperationConfig()
                 {
-                    AttributesToGet = new List<string>() { "CMKARN", "Encrypted256BitKey", "KMSEncryptedDataKey", "Normal256BitKey", "IV", "ClientSecretOTP", "SNSTopicARN", "OTPValidityInSeconds", "OTPGeneratedLinuxTime" },
+                    AttributesToGet = new List<string>() { "Name" }
                 };
                 // Pass in the configuration to the GetItem method.
                 // 1. Table that has only a partition key as primary key.
                 clientItem = table.GetItemAsync(PrimaryKeyID, config).GetAwaiter().GetResult();
                 context.Logger.LogLine("DynamoDBHelper::GetItem() -- GetOperation succeeded");
-
             }
             catch (Exception ex)
             {

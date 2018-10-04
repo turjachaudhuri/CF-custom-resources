@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.S3Events;
@@ -37,23 +38,25 @@ namespace CloudformationCustomResource
 
         public CloudFormationResponse LoadMasterData(LoadMasterDataCustomCloudformationEvent request, ILambdaContext context)
         {
-            DynamoDBMasterItem1 item1 = new DynamoDBMasterItem1(
-                                                Convert.ToString(Guid.NewGuid()),
-                                                "Rohit Srivastava",
-                                                "Senior Consultant",
-                                                "29",
-                                                "Advisory");
             try
             {
+                string UniqueIdGenerated = SecurityHelper.GetSha256Hash($"{request.StackId}:{request.LogicalResourceId}");
+                DynamoDBMasterItem1 item1 = new DynamoDBMasterItem1(
+                                                    UniqueIdGenerated,
+                                                    Convert.ToString(Guid.NewGuid()),
+                                                    "Rohit Srivastava",
+                                                    "Senior Consultant",
+                                                    "29",
+                                                    "Advisory");
+
                 context.Logger.LogLine($"Input event invoked: {JsonConvert.SerializeObject(request)}");
                 DynamoDBHelper dynamoDBHelper = new DynamoDBHelper(context, this.isLocalDebug);
 
                 context.Logger.LogLine($"Custom cloudformation event request type: {request.RequestType}");
-
-                if (string.Equals(request.RequestType , Constants.CloudFormationCreateRequestType))
-                {                     
-                    
-
+                //Since this is not basically creation of any custom resource , rather initial data load , we donot need
+                //to care about anything other than the CREATE request type
+                if (string.Equals(request.RequestType, Constants.CloudFormationCreateRequestType))
+                {
                     dynamoDBHelper.putItemTable1(item1, request.ResourceProperties.TableName);
 
                     //Success - data inserted properly in the dynamoDB
@@ -61,7 +64,7 @@ namespace CloudformationCustomResource
                             new CloudFormationResponse(
                                                 Constants.CloudformationSuccessCode,
                                                 "Custom Resource Creation Successful",
-                                                context.LogStreamName,
+                                                $"{request.StackId}-{request.LogicalResourceId}-DataLoad",
                                                 request.StackId,
                                                 request.RequestId,
                                                 request.LogicalResourceId,
@@ -85,7 +88,7 @@ namespace CloudformationCustomResource
                     return objResponse.CompleteCloudFormationResponse(request, context).GetAwaiter().GetResult();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 context.Logger.LogLine($"StartupProgram::LoadMasterData => {ex.Message}");
                 context.Logger.LogLine($"StartupProgram::LoadMasterData => {ex.StackTrace}");
@@ -102,7 +105,7 @@ namespace CloudformationCustomResource
                                             null
                                 );
 
-                return objResponse.CompleteCloudFormationResponse(request, context).GetAwaiter().GetResult();             
+                return objResponse.CompleteCloudFormationResponse(request, context).GetAwaiter().GetResult();
             }
         }
     }
