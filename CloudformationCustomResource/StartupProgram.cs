@@ -78,7 +78,7 @@ namespace CloudformationCustomResource
                     CloudFormationResponse objResponse =
                         new CloudFormationResponse(
                                             Constants.CloudformationSuccessCode,
-                                            "Stack delete request : No change needed for custom resources",
+                                            "Do nothing.Data will be pushed in only when stack event is Create",
                                             context.LogStreamName,
                                             request.StackId,
                                             request.RequestId,
